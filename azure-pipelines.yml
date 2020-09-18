@@ -8,13 +8,16 @@ jobs:
       steps:
       - script: |
           # --publish-all because I need a random port
+          echo ${PWD}
           sudo docker run --gpus all --privileged  -it adsbrainwestus2.azurecr.io/prophetnet:20.03-py3 /bin/bash
           echo ${PWD}
           cd fastseq
           python -m pip install -r requirements.txt
           echo Install done! 
-          echo ${ls}
-          python tests/run_fairseq_tests.py
+          echo ${LS}
+          cd tests
+          echo ${PWD}
+          python run_fairseq_tests.py
           echo tests done! 
           echo ${PWD}
         name: UnitTests
