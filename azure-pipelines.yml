@@ -15,6 +15,8 @@ jobs:
           echo Install done! 
           cd fastseq
           echo ${PWD}
+          ls
+          echo ls done !
           python tests/run_fairseq_tests.py
           echo tests done! 
           echo ${PWD}
