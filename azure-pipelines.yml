@@ -4,13 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- main
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
+- script: python tests/run_fairseq_tests.py
   displayName: 'Run a one-line script'
 
 - script: |
