@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/adsbrain/Fastseq/_apis/build/status/NickNickGo.fastseq?branchName=azure-pipelines)](https://dev.azure.com/adsbrain/Fastseq/_build/latest?definitionId=2&branchName=azure-pipelines)
+
 <h1 align="Center"> <p> FastSeq </p> </h1>
 
 # Introduction
