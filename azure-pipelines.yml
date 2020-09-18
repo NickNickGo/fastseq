@@ -9,6 +9,7 @@ jobs:
       - script: |
           # --publish-all because I need a random port
           echo ${PWD}
+          ls
           python -m pip install -r requirements.txt
           echo Install done! 
           ls
