@@ -9,11 +9,13 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: python tests/run_fairseq_tests.py
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  jobs: 
+    - job: BuildDocker
+      displayName: Build Docker
+      steps:
+      - script: |
+          # --publish-all because I need a random port
+          sudo docker run --gpus all --privileged  -it adsbrainwestus2.azurecr.io/prophetnet:20.03-py3 /bin/bash
+          echo ${PWD}
+          cd fastseq
+          echo ${PWD}
