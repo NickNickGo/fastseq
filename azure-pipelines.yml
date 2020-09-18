@@ -9,14 +9,9 @@ jobs:
       - script: |
           # --publish-all because I need a random port
           echo ${PWD}
-          #cd fastseq
-          echo ${PWD}
-          python -m pip install -r fastseq/requirements.txt
+          python -m pip install -r requirements.txt
           echo Install done! 
-          cd fastseq
-          echo ${PWD}
           ls
-          echo ls done !
           python tests/run_fairseq_tests.py
           echo tests done! 
           echo ${PWD}
