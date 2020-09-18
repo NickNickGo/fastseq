@@ -10,12 +10,11 @@ jobs:
           # --publish-all because I need a random port
           echo ${PWD}
           cd fastseq
+          echo ${PWD}
           python -m pip install -r requirements.txt
           echo Install done! 
-          echo ${LS}
-          cd tests
           echo ${PWD}
-          python run_fairseq_tests.py
+          python tests/run_fairseq_tests.py
           echo tests done! 
           echo ${PWD}
         name: UnitTests
