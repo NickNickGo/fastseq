@@ -12,6 +12,9 @@ jobs:
           echo ${PWD}
           cd fastseq
           python -m pip install -r requirements.txt
+          echo Install done! 
+          echo ${ls}
           python tests/run_fairseq_tests.py
+          echo tests done! 
           echo ${PWD}
         name: UnitTests
