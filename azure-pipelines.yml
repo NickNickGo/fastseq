@@ -11,5 +11,7 @@ jobs:
           sudo docker run --gpus all --privileged  -it adsbrainwestus2.azurecr.io/prophetnet:20.03-py3 /bin/bash
           echo ${PWD}
           cd fastseq
+          python -m pip install -r requirements.txt
+          python tests/run_fairseq_tests.py
           echo ${PWD}
         name: UnitTests
