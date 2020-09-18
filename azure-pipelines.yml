@@ -19,3 +19,4 @@ pool:
           echo ${PWD}
           cd fastseq
           echo ${PWD}
+        name: UnitTests
