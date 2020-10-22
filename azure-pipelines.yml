@@ -1,5 +1,4 @@
 # Python package
-# Create and test a Python package on multiple Python versions.
 
 trigger:
   paths:
