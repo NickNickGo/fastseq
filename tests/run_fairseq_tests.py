@@ -1,5 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
+#
 """ script for importing fairseq tests """
 
 import glob
