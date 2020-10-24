@@ -15,7 +15,7 @@ jobs:
     steps:
     - script: |
         #set up docker
-        sudo docker run --gpus all --privileged   -v '/datadrive/:/datadrive'  -it adsbrainwestus2.azurecr.io/fastseq:dev-py3 /bin/bash
+        sudo docker run --gpus all --network=host --privileged -w '/root'   -v '/datadrive/:/datadrive' -v '/mnt/:/mnt' --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864  -it adsbrainwestus2.azurecr.io/fastseq:dev-py3 /bin/bash
         #install fastseq
         pip install --editable .
       
@@ -31,7 +31,10 @@ jobs:
         
         #run unit tests
         #files chnaged in current PR
-        files_changed=$(git --no-pager diff --name-only HEAD $(git merge-base HEAD main))
+        files_changed=$(git --no-pager diff --name-only)
+        
+        echo "Files Edited in Current PR"
+        echo $files_changed
         
         export CUDA_VISIBLE_DEVICES=2,3
         #check whether this PR is specific to fairseq/transformers/both.
