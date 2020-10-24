@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-
+#
 """Apply the beam search optimizations to fairseq-v0.9.0"""
 
 import math
