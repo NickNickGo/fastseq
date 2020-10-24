@@ -31,7 +31,9 @@ jobs:
         
         #run unit tests
         #files chnaged in current PR
-        files_changed=$(git --no-pager diff --name-only HEAD $(git merge-base HEAD main))
+        files_changed=$(git diff HEAD HEAD~ --name-only)
+        echo "Chnaged Files POPO"
+        echo $files_changed
         
         export CUDA_VISIBLE_DEVICES=2,3
         #check whether this PR is specific to fairseq/transformers/both.
