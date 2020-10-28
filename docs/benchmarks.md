@@ -1,4 +1,4 @@
-# Benchmarks
+# Benchmarks#
 
 All the following benchmarking experiments run on NVIDIA-V100-16GB with [the docker](../docker/Dockerfile). The results can be reproduced by using the command below:
 
