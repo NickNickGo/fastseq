@@ -17,7 +17,7 @@ jobs:
     steps:
     - script: |
         #set up docker
-        sudo docker run --gpus all --privileged -it adsbrainwestus2.azurecr.io/fastseq:dev-py3 /bin/bash
+        sudo docker run --gpus all  -d  --privileged   -v '/datadrive/:/datadrive'  -it adsbrainwestus2.azurecr.io/fastseq:dev-py3 /bin/bash
         #install fastseq
         pip install --editable .
       
