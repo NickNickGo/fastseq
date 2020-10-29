@@ -33,6 +33,7 @@ jobs:
         ls
         echo "*****************"
         git branch 
+        git diff origin/main --name-only 
         
         #files changed in current PR
         files_changed=$(git diff --name-only main)
