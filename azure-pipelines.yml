@@ -34,6 +34,9 @@ jobs:
         echo "*****************"
         git branch 
         git diff origin/main --name-only 
+        git remote add upstream_repo https://github.com/microsoft/fastseq.git
+        git fetch upstream_repo main:main
+        git diff upstream_repo/main
         
         #files changed in current PR
         files_changed=$(git diff --name-only main)
