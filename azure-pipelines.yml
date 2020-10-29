@@ -4,11 +4,9 @@
 #Azure pipeline for continuous integration
 
 trigger:
-  pr:
-    branches:
-      include:
-      - '*'  # must quote since "*" is a YAML reserved character; we want a string
-
+  branches:
+    include:
+    - '*'  # must
 jobs:
   - job: Fastseq_unittests
     timeoutInMinutes: 360
