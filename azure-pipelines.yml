@@ -41,3 +41,10 @@ jobs:
         #cd benchmarks/
         #CUDA_VISIBLE_DEVICES=3 run_all_benchmarks.sh
       displayName: 'run fastseq unit tests'
+    - task: PublishTestResults@2
+      condition: succeededOrFailed()
+      inputs:
+        testRunTitle: 'Publish test results for Python $(python.version)'
+        failTaskOnFailedTests: true
+
+
