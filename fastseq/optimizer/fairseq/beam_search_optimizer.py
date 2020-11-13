@@ -50,7 +50,7 @@ class MultiheadAttentionV2(MultiheadAttention):
 
     See "Attention Is All You Need" for more details.
     """
-
+     ***********
     def __init__(self,
                  embed_dim,
                  num_heads,
@@ -66,7 +66,7 @@ class MultiheadAttentionV2(MultiheadAttention):
                          add_bias_kv, add_zero_attn, self_attention,
                          encoder_decoder_attention)
 
-        self.beam_size = -1
+        self.beam_size = 1
         self.tpu = False
 
     def apply_sparse_mask(
