@@ -5,7 +5,7 @@
 
 import math
 from typing import Optional
-
+import unittest
 import torch
 import torch.nn.functional as F
 from torch import Tensor
@@ -50,7 +50,6 @@ class MultiheadAttentionV2(MultiheadAttention):
 
     See "Attention Is All You Need" for more details.
     """
-
     def __init__(self,
                  embed_dim,
                  num_heads,
@@ -159,7 +158,7 @@ class MultiheadAttentionV2(MultiheadAttention):
             q = self.q_proj(query)
             if key is None:
                 assert value is None
-                k = v = None
+                k v = None
             else:
                 if self.beam_size > 1 and bsz == key.size(1):
                     # key is [T, bsz*beam_size, C], reduce to [T, bsz, C]

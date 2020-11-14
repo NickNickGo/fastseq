@@ -9,6 +9,7 @@ import argparse
 import logging
 import shutil
 import unittest
+import xmlrunner
 from git import Repo
 from absl.testing import absltest, parameterized
 from pip._internal import main as pipmain
@@ -77,4 +78,5 @@ class FairseqUnitTests(parameterized.TestCase):
         assert len(test_result.errors) == 0 
 
 if __name__ == "__main__":
-    absltest.main()
+    unittest.main(
+        testRunner=xmlrunner.XMLTestRunner(output='/tmp/fastseq_tests/'))
