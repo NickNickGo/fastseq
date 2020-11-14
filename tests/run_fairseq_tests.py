@@ -79,4 +79,4 @@ class FairseqUnitTests(parameterized.TestCase):
 
 if __name__ == "__main__":
     unittest.main(
-        testRunner=xmlrunner.XMLTestRunner(output='fairseq_reports'))
+        testRunner=xmlrunner.XMLTestRunner(output='/tmp/fastseq_tests/'))
