@@ -45,6 +45,6 @@ jobs:
       condition: succeededOrFailed()
       inputs:
         testRunTitle: 'Publish test results for Python $(python.version)'
-        testResultsFiles: 'tests/**/*.xml'
+        testResultsFiles: '/tmp/fastseq_tests/*.xml'
         failTaskOnFailedTests: true
 

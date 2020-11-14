@@ -5,7 +5,7 @@
 
 import math
 from typing import Optional
-
+import unittest
 import torch
 import torch.nn.functional as F
 from torch import Tensor
@@ -50,7 +50,6 @@ class MultiheadAttentionV2(MultiheadAttention):
 
     See "Attention Is All You Need" for more details.
     """
-     ***********
     def __init__(self,
                  embed_dim,
                  num_heads,
