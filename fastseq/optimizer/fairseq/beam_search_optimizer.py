@@ -158,7 +158,7 @@ class MultiheadAttentionV2(MultiheadAttention):
             q = self.q_proj(query)
             if key is None:
                 assert value is None
-                k = v = None
+                k v = None
             else:
                 if self.beam_size > 1 and bsz == key.size(1):
                     # key is [T, bsz*beam_size, C], reduce to [T, bsz, C]
