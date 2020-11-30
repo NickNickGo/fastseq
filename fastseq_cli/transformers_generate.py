@@ -15,7 +15,8 @@ POSTPROCESS_FINISHED = None
 
 class TokenizeDataset(torch.utils.data.Dataset):
     """Characterizes a dataset for PyTorch"""
-    def __init__(self, examples, tokenizer, model_name, prefix):
+    def __init__(self, examples, tokenizer, model_name, prefix,
+                return_tensors, truncation, padding):
         """Multiprocess Dataloader.
         Args:
             examples (List(str)): a list of input sentences.
@@ -27,9 +28,9 @@ class TokenizeDataset(torch.utils.data.Dataset):
         self.tokenizer= tokenizer
         self.model_name = model_name
         self.prefix = prefix
-        self.return_tensors="pt"
-        self.truncation=True
-        self.padding="max_length"
+        self.return_tensors=return_tensors
+        self.truncation=truncation
+        self.padding=padding
 
     def __len__(self):
         return len(self.examples)
@@ -47,6 +48,11 @@ class TokenizeDataset(torch.utils.data.Dataset):
 class IOProcess (Process):
     """ Write detokenized output to file in order."""
     def __init__(self, msg_queue, fout):
+        """Async output writer.
+        Args:
+            msg_queue : Multiprocess message Queue
+            fout : output file pointer.
+        """
         super(IOProcess, self).__init__()
         self.msg_queue = msg_queue
         self.fout = fout
@@ -84,6 +90,14 @@ class PostProcess(Process):
     """ Parallel detokenization """
     def __init__(self, tokenizer, data_queue, msg_queue,
             skip_special_tokens, clean_up_tokenization_spaces):
+        """Async Postprocess.
+        Args:
+            data_queue : Multiprocess data Queue
+            msg_queue :  Multiprocess message queue
+            tokenizer : tokenizer
+            clean_up_tokenization_spaces : clean_up_tokenization_spaces?
+            skip_special_tokens = skip_special_tokens?
+        """
         super(PostProcess, self).__init__()
         self.data_queue = data_queue
         self.msg_queue  = msg_queue
@@ -127,6 +141,9 @@ def generate_summaries_or_translations(
     clean_up_tokenization_spaces=False,
     preprocess_cpu_num=2,
     postprocess_cpu_num=2,
+    return_tensors="pt",
+    truncation=True,
+    padding="max_length",
     **gen_kwargs,
 ) -> None:
     """Run generation"""
@@ -157,7 +174,7 @@ def generate_summaries_or_translations(
     io_process = IOProcess( msg_queue, fout)
     io_process.start()
     dataset = TokenizeDataset(examples, tokenizer, model_name,
-            model.config.prefix)
+            model.config.prefix, return_tensors, truncation, padding)
     training_generator = torch.utils.data.DataLoader(dataset,
             batch_size=batch_size, num_workers = preprocess_cpu_num,
             drop_last=True)
@@ -242,6 +259,11 @@ def run_generate():
                         default=2,
                         required=False,
                         help="post-processing worker threads")
+    parser.add_argument("--no_truncation", action="store_true")
+    parser.add_argument("--return_tensors", type=str, help="specify return tensors", 
+                        default="pt", required=False)
+    parser.add_argument("--padding", type=str, help="specify padding", 
+                        default="max_length", required=False)
 
     args = parser.parse_args()
     examples = [
@@ -266,6 +288,9 @@ def run_generate():
         clean_up_tokenization_spaces=args.clean_up_tokenization_spaces,
         preprocess_cpu_num=args.preprocess_cpu_num,
         postprocess_cpu_num=args.postprocess_cpu_num,
+        return_tensors=args.return_tensors,
+        truncation=not args.no_truncation,
+        padding=args.padding
         )
     if args.reference_path is None:
         return
