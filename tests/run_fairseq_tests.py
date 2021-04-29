@@ -18,7 +18,7 @@ from pip._internal import main as pipmain
 from xmlrunner.extra.xunit_plugin import transform
 
 FASTSEQ_PATH = os.sep.join(os.path.realpath(__file__).split('/')[0:-2])
-FAIRSEQ_PATH = '/tmp/fairseq/'
+FAIRSEQ_PATH = '/datadrive/nikhil/branches/EL_Attention/fairseq'
 FAIRSEQ_GIT_URL = 'https://github.com/pytorch/fairseq.git'
 
 class FairseqUnitTests(parameterized.TestCase):
@@ -32,15 +32,16 @@ class FairseqUnitTests(parameterized.TestCase):
         sys.path.insert(0, FAIRSEQ_PATH)
 
     def clone_and_build_fairseq(self, repo, version):
-        """clone and build fairseq repo"""
-        if os.path.isdir(FAIRSEQ_PATH):
-            shutil.rmtree(FAIRSEQ_PATH)
-        Repo.clone_from(FAIRSEQ_GIT_URL, FAIRSEQ_PATH, branch=version)
-        pipmain(['install', 'git+https://github.com/pytorch/fairseq.git@' +
-                  version])
-        original_pythonpath = os.environ[
-            'PYTHONPATH'] if 'PYTHONPATH' in os.environ else ''
-        os.environ['PYTHONPATH'] = FAIRSEQ_PATH + ':' + original_pythonpath
+        pass
+        #"""clone and build fairseq repo"""
+        #if os.path.isdir(FAIRSEQ_PATH):
+        #    shutil.rmtree(FAIRSEQ_PATH)
+        #Repo.clone_from(FAIRSEQ_GIT_URL, FAIRSEQ_PATH, branch=version)
+        #pipmain(['install', 'git+https://github.com/pytorch/fairseq.git@' +
+        #          version])
+        #original_pythonpath = os.environ[
+        #    'PYTHONPATH'] if 'PYTHONPATH' in os.environ else ''
+        #os.environ['PYTHONPATH'] = FAIRSEQ_PATH + ':' + original_pythonpath
 
     def get_test_suites(self, test_files_path, blocked_tests):
         """prepare test suite"""
@@ -66,11 +67,12 @@ class FairseqUnitTests(parameterized.TestCase):
     })
     def test_suites(self, without_fastseq_opt, fairseq_version, blocked_tests):
         """"run test suites"""
-        self.clone_and_build_fairseq(FAIRSEQ_GIT_URL, fairseq_version)
+        #self.clone_and_build_fairseq(FAIRSEQ_GIT_URL, fairseq_version)
         if not without_fastseq_opt:
             import fastseq  # pylint: disable=import-outside-toplevel
         self.prepare_env()
         test_files_path = FAIRSEQ_PATH + '/tests/test_*.py'
+        import fastseq.optimizer.fairseq
         suites = self.get_test_suites(test_files_path, blocked_tests)
         test_suite = unittest.TestSuite(suites)
         test_runner = unittest.TextTestRunner()

@@ -1,5 +1,3 @@
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT License.
 
 """Optimize fairseq-generate (v0.9.0)"""
 
@@ -60,7 +58,7 @@ class IOProcess(Process):
 
         self.args = args
         self.message_queue = message_queue
-        self.has_target = False
+        self.has_target = True
 
     def run(self):
         while True:
@@ -71,7 +69,6 @@ class IOProcess(Process):
                     self.scorer.add_string(t, h)
                 else:
                     self.scorer.add(t, h)
-                self.has_target = True
             elif msg == GENERATE_FINISHED:
                 if self.has_target:
                     print('| Generate {} with beam={}: {}'.format(
@@ -125,6 +122,7 @@ class PostProcess(Process):
         self.task = task
         self.data_queue = data_queue
         self.message_queue = message_queue
+        self.has_target = True
         if args.decode_hypothesis:
             self.tokenizer = encoders.build_tokenizer(args)
             self.bpe = encoders.build_bpe(args)
@@ -361,10 +359,13 @@ def main_v1(args):
 
     io_process = IOProcess(args, task, message_queue)
     io_process.start()
-
+        
+    task.transpose_enc_dec_kv_proj(models)
     with progress_bar.build_progress_bar(args, itr) as t:
         wps_meter = TimeMeter()
-        for sample in t:
+        for ind, sample in enumerate(t):
+            #print('******************************** NEW BATCH *******************************************')
+            #if ind <= len(t)-2: continue
             cpu_sample = sample
             if 'net_input' not in sample:
                 continue
@@ -402,13 +403,10 @@ def main_v1(args):
     for p in p_list:
         p.join()
 
-    sent_throught = num_sentences / gen_timer.sum if num_sentences > 0 else 0
-    tokens_throught = 1. / gen_timer.avg if num_sentences > 0 else 0
-
     message_queue.put(
         '| Translated {} sentences ({} tokens) in {:.1f}s ({:.2f} sentences/s, {:.2f} tokens/s)'. # pylint: disable=line-too-long
-        format(num_sentences, gen_timer.n, gen_timer.sum, sent_throught,
-               tokens_throught))
+        format(num_sentences, gen_timer.n, gen_timer.sum,
+               num_sentences / gen_timer.sum, 1. / gen_timer.avg))
 
     message_queue.put(GENERATE_FINISHED)
     io_process.join()

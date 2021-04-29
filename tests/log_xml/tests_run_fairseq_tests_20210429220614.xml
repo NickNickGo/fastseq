@@ -1,0 +1,479 @@
+<testsuites>
+	<testsuite errors="0" failures="1" file=".py" name="FairseqUnitTests-20210429220614" skipped="0" tests="1" time="16.678" timestamp="2021-04-29T22:06:30">
+		<testcase classname="FairseqUnitTests" name="test_suites_Normal" time="16.678">
+			<!--test_suites_Normal(without_fastseq_opt=False, fairseq_version='v0.9.0', blocked_tests=['test_binaries.py', 'test_bmuf.py', 'test_reproducibility.py'])
+"run test suites-->
+			<failure message="" type="AssertionError">
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.6/site-packages/absl/testing/parameterized.py", line 263, in bound_param_test
+    test_method(self, **testcase_params)
+  File "tests/run_fairseq_tests.py", line 80, in test_suites
+    assert len(test_result.errors) == 0
+AssertionError
+			</failure>
+			<system-out>
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+************************************ REPLACING GENERATE ************************************
+************************* REPLACING TRANS ENCODER *************************
+TestEncoder()
+			</system-out>
+			<system-err>
+INFO 2021-04-29 22:06:15,062 /opt/conda/lib/python3.6/site-packages/transformers/file_utils.py:39] PyTorch version 1.8.1+cu102 available.
+/opt/conda/lib/python3.6/site-packages/torch/distributed/distributed_c10d.py:144: UserWarning: torch.distributed.reduce_op is deprecated, please use torch.distributed.ReduceOp instead
+  warnings.warn("torch.distributed.reduce_op is deprecated, please use "
+INFO 2021-04-29 22:06:21,284 /datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/__init__.py:51] fairseq(v0.9.0) has been optimized by fastseq(v0.0.4).
+.F........../datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/search.py:142: UserWarning: This overload of add is deprecated:
+	add(Tensor input, Number alpha, Tensor other, *, Tensor out)
+Consider using one of the following signatures instead:
+	add(Tensor input, Tensor other, *, Number alpha, Tensor out) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:1005.)
+  lprobs_g = torch.add(lprobs_g, self.diversity_strength, self.diversity_buf.unsqueeze(1))
+EEEEEEEE.......EEE...EEE.EEEE.E.EE..
+======================================================================
+ERROR: test_diverse_beam_search (tests.test_sequence_generator.TestDiverseBeamSearch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 204, in test_diverse_beam_search
+    hypos = generator.generate([self.model], sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_maxlen (tests.test_sequence_generator.TestSequenceGenerator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 125, in test_maxlen
+    hypos = generator.generate([self.model], self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_with_lenpen_favoring_long_hypos (tests.test_sequence_generator.TestSequenceGenerator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 108, in test_with_lenpen_favoring_long_hypos
+    hypos = generator.generate([self.model], self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_with_lenpen_favoring_short_hypos (tests.test_sequence_generator.TestSequenceGenerator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 90, in test_with_lenpen_favoring_short_hypos
+    hypos = generator.generate([self.model], self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_with_normalization (tests.test_sequence_generator.TestSequenceGenerator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 53, in test_with_normalization
+    hypos = generator.generate([self.model], self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_without_normalization (tests.test_sequence_generator.TestSequenceGenerator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 72, in test_without_normalization
+    hypos = generator.generate([self.model], self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_topp_sampling_search_high_prob (tests.test_sequence_generator.TestTopPSamplingSearch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 324, in test_topp_sampling_search_high_prob
+    hypos = generator.generate([self.model], sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_topp_sampling_search_low_prob (tests.test_sequence_generator.TestTopPSamplingSearch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_sequence_generator.py", line 295, in test_topp_sampling_search_low_prob
+    hypos = generator.generate([self.model], sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_backtranslation_dataset_no_eos_in_input_src (tests.test_backtranslation_dataset.TestBacktranslationDataset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 107, in test_backtranslation_dataset_no_eos_in_input_src
+    remove_eos_from_input_src=True, remove_eos_from_output_src=False,
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 79, in _backtranslation_dataset_helper
+    backtranslation_batch_result = next(iter(dataloader))
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 557, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 47, in fetch
+    return self.collate_fn(data)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 137, in collater
+    cuda=self.cuda,
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 37, in backtranslate_samples
+    generated_sources = generate_fn(s)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 135, in &lt;lambda&gt;
+    lambda net_input: self.backtranslation_fn(net_input)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 62, in &lt;lambda&gt;
+    lambda sample: generator.generate([self.model], sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_backtranslation_dataset_no_eos_in_output_src (tests.test_backtranslation_dataset.TestBacktranslationDataset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 97, in test_backtranslation_dataset_no_eos_in_output_src
+    remove_eos_from_input_src=False, remove_eos_from_output_src=True,
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 79, in _backtranslation_dataset_helper
+    backtranslation_batch_result = next(iter(dataloader))
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 557, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 47, in fetch
+    return self.collate_fn(data)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 137, in collater
+    cuda=self.cuda,
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 37, in backtranslate_samples
+    generated_sources = generate_fn(s)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 135, in &lt;lambda&gt;
+    lambda net_input: self.backtranslation_fn(net_input)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 62, in &lt;lambda&gt;
+    lambda sample: generator.generate([self.model], sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_backtranslation_dataset_with_eos_in_output_src (tests.test_backtranslation_dataset.TestBacktranslationDataset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 102, in test_backtranslation_dataset_with_eos_in_output_src
+    remove_eos_from_input_src=False, remove_eos_from_output_src=False,
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 79, in _backtranslation_dataset_helper
+    backtranslation_batch_result = next(iter(dataloader))
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 557, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/opt/conda/lib/python3.6/site-packages/torch/utils/data/_utils/fetch.py", line 47, in fetch
+    return self.collate_fn(data)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 137, in collater
+    cuda=self.cuda,
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 37, in backtranslate_samples
+    generated_sources = generate_fn(s)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/data/backtranslation_dataset.py", line 135, in &lt;lambda&gt;
+    lambda net_input: self.backtranslation_fn(net_input)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_backtranslation_dataset.py", line 62, in &lt;lambda&gt;
+    lambda sample: generator.generate([self.model], sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/sequence_generator.py", line 113, in generate
+    return self._generate(model, sample, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 1235, in _generate
+    encoder_outs, reorder_state, self.beam_size)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in reorder_encoder_out
+    for model, encoder_out in zip(self.models, encoder_outs)
+  File "/datadrive/nikhil/branches/EL_Attention/NickNickGo_fastseq/fastseq/fastseq/optimizer/fairseq/beam_search_optimizer.py", line 310, in &lt;listcomp&gt;
+    for model, encoder_out in zip(self.models, encoder_outs)
+TypeError: reorder_encoder_out() takes 3 positional arguments but 4 were given
+
+======================================================================
+ERROR: test_load_full_checkpoint (tests.test_train.TestLoadCheckpoint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_train.py", line 109, in test_load_full_checkpoint
+    self.assertEqual(next(itr)['net_input']['src_tokens'][0].item(), 0)
+ValueError: only one element tensors can be converted to Python scalars
+
+======================================================================
+ERROR: test_load_no_checkpoint (tests.test_train.TestLoadCheckpoint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_train.py", line 122, in test_load_no_checkpoint
+    self.assertEqual(next(itr)['net_input']['src_tokens'][0].item(), 0)
+ValueError: only one element tensors can be converted to Python scalars
+
+======================================================================
+ERROR: test_load_partial_checkpoint (tests.test_train.TestLoadCheckpoint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_train.py", line 84, in test_load_partial_checkpoint
+    self.assertEqual(next(itr)['net_input']['src_tokens'][0].item(), 50)
+ValueError: only one element tensors can be converted to Python scalars
+
+======================================================================
+ERROR: test_nll_loss (tests.test_label_smoothing.TestLabelSmoothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_label_smoothing.py", line 54, in test_nll_loss
+    nll_loss, nll_sample_size, nll_logging_output = nll_crit(self.model, self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/criterions/cross_entropy.py", line 28, in forward
+    net_output = model(**sample['net_input'])
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/models/fairseq_model.py", line 224, in forward
+    decoder_out = self.decoder(prev_output_tokens, encoder_out=encoder_out, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/utils.py", line 208, in forward
+    probs = self.args.probs.index_select(1, torch.LongTensor(steps))
+RuntimeError: INDICES element is out of DATA bounds, id=3 axis_dim=3
+
+======================================================================
+ERROR: test_padding (tests.test_label_smoothing.TestLabelSmoothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_label_smoothing.py", line 62, in test_padding
+    loss, _, logging_output = crit(self.model, self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/criterions/label_smoothed_cross_entropy.py", line 56, in forward
+    net_output = model(**sample['net_input'])
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/models/fairseq_model.py", line 224, in forward
+    decoder_out = self.decoder(prev_output_tokens, encoder_out=encoder_out, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/utils.py", line 208, in forward
+    probs = self.args.probs.index_select(1, torch.LongTensor(steps))
+RuntimeError: INDICES element is out of DATA bounds, id=3 axis_dim=3
+
+======================================================================
+ERROR: test_reduction (tests.test_label_smoothing.TestLabelSmoothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_label_smoothing.py", line 81, in test_reduction
+    loss, _, logging_output = crit(self.model, self.sample, reduce=True)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/criterions/label_smoothed_cross_entropy.py", line 56, in forward
+    net_output = model(**sample['net_input'])
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/models/fairseq_model.py", line 224, in forward
+    decoder_out = self.decoder(prev_output_tokens, encoder_out=encoder_out, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/utils.py", line 208, in forward
+    probs = self.args.probs.index_select(1, torch.LongTensor(steps))
+RuntimeError: INDICES element is out of DATA bounds, id=3 axis_dim=3
+
+======================================================================
+ERROR: test_zero_eps (tests.test_label_smoothing.TestLabelSmoothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_label_smoothing.py", line 89, in test_zero_eps
+    nll_loss, nll_sample_size, nll_logging_output = nll_crit(self.model, self.sample)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/criterions/cross_entropy.py", line 28, in forward
+    net_output = model(**sample['net_input'])
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/fairseq/models/fairseq_model.py", line 224, in forward
+    decoder_out = self.decoder(prev_output_tokens, encoder_out=encoder_out, **kwargs)
+  File "/opt/conda/lib/python3.6/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/utils.py", line 208, in forward
+    probs = self.args.probs.index_select(1, torch.LongTensor(steps))
+RuntimeError: INDICES element is out of DATA bounds, id=3 axis_dim=3
+
+======================================================================
+ERROR: test_average_checkpoints (tests.test_average_checkpoints.TestAverageCheckpoints)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_average_checkpoints.py", line 66, in test_average_checkpoints
+    output = average_checkpoints([path_0, path_1])['model']
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/scripts/average_checkpoints.py", line 65, in average_checkpoints
+    averaged_params[k].div_(num_models)
+RuntimeError: result type Float can't be cast to the desired output type Int
+
+======================================================================
+ERROR: test_multi_corpus_sampled_dataset_uniform_sample (tests.test_multi_corpus_sampled_dataset.TestMultiCorpusSampledDataset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_multi_corpus_sampled_dataset.py", line 78, in test_multi_corpus_sampled_dataset_uniform_sample
+    self._test_sample_helper(expected_sample_from_first_ds_percentage=0.5)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_multi_corpus_sampled_dataset.py", line 64, in _test_sample_helper
+    if m.collater([m[0], m[1]])["net_input"]["src_tokens"][0] == 1:
+RuntimeError: Boolean value of Tensor with more than one value is ambiguous
+
+======================================================================
+ERROR: test_multi_corpus_sampled_dataset_weighted_sample (tests.test_multi_corpus_sampled_dataset.TestMultiCorpusSampledDataset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_multi_corpus_sampled_dataset.py", line 94, in test_multi_corpus_sampled_dataset_weighted_sample
+    sampling_func=naive_weighted_sample(weights=[0.9, 0.1]),
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_multi_corpus_sampled_dataset.py", line 64, in _test_sample_helper
+    if m.collater([m[0], m[1]])["net_input"]["src_tokens"][0] == 1:
+RuntimeError: Boolean value of Tensor with more than one value is ambiguous
+
+======================================================================
+FAIL: test_noising_dataset_without_eos (tests.test_noising.TestDataNoising)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_noising.py", line 517, in test_noising_dataset_without_eos
+    self.assertTensorEqual(expected_src, generated_src)
+  File "/datadrive/nikhil/branches/EL_Attention/fairseq/tests/test_noising.py", line 521, in assertTensorEqual
+    self.assertEqual(t1.size(), t2.size(), "size mismatch")
+AssertionError: torch.Size([2, 7]) != torch.Size([2, 8]) : size mismatch
+
+----------------------------------------------------------------------
+Ran 48 tests in 5.251s
+
+FAILED (failures=1, errors=21)
+			</system-err>
+		</testcase>
+	</testsuite>
+</testsuites>
